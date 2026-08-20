@@ -1,0 +1,49 @@
+<session version="1.1" release="T-2022.06-SP2" timestp="2026-06-23 19:34:19 GMT">
+  <info>
+    <attr name="datetime" value="Tue Jun 23 22:34:35 2026
+"/>
+    <attr name="command" value="urg -full64 -dir coverage/all.vdb -report coverage/merged_report -format both"/>
+    <attr name="top_instance" value="tb_top"/>
+  </info>
+  <hvp>
+    <datadef>
+      <metdef name="Line" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Cond" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Toggle" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="FSM" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Branch" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Group" type="percent" aggregator="average" builtin="1" />
+    </datadef>
+  </hvp>
+  <old_coverage>
+  <scope type="top" name="top">
+    <metric name="Line" value="206/226" />
+    <metric name="Cond" value="27/41" />
+    <metric name="Toggle" value="348/428" />
+    <metric name="FSM" value="5/5" />
+    <metric name="Branch" value="36/46" />
+    <metric name="Group" value="93.3333%" />
+  </scope>
+  <scope type="instance" name="top">
+  </scope>
+  <scope type="group" name="top">
+    <scope type="group" name="bird_pkg::bird_coverage::cg_bp_cg">
+      <metric name="Group" value="75%" />
+    </scope>
+    <scope type="group" name="bird_pkg::bird_coverage::cg_cfg_cg">
+      <metric name="Group" value="91.6667%" />
+    </scope>
+    <scope type="group" name="bird_pkg::bird_coverage::cg_reset_cg">
+      <metric name="Group" value="100%" />
+    </scope>
+    <scope type="group" name="bird_pkg::bird_coverage::cg_remote_cg">
+      <metric name="Group" value="100%" />
+    </scope>
+    <scope type="group" name="bird_pkg::bird_coverage::cg_drop_cg">
+      <metric name="Group" value="100%" />
+    </scope>
+  </scope>
+  <scope type="assert" name="Statistics">
+  </scope>
+  </old_coverage>
+</session>

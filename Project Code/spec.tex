@@ -1,0 +1,332 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+% ---------------- Customization ----------------
+\newcommand{\AuthorName}{Elias Khalil}
+\newcommand{\SemesterText}{Second Semester 2025/2026}
+\newcommand{\LogoFile}{bzu_logo.png} % place logo in project folder
+% ----------------------------------------------
+
+\begin{document}
+
+% ============================================================
+% Front Page
+% ============================================================
+\begin{titlepage}
+\begin{center}
+
+\vspace*{1cm}
+
+\includegraphics[width=0.35\textwidth]{\LogoFile}
+
+\vspace{1.2cm}
+
+\textbf{\Large Birzeit University}\\[0.4cm]
+\textbf{\large Faculty of Engineering and Technology}\\[0.2cm]
+\textbf{\large Department of Electrical and Computer Engineering}\\[0.6cm]
+
+\textbf{\large \SemesterText}
+
+\vfill
+
+\textbf{\Large Course Project Specification}
+
+\vspace{0.4cm}
+
+\rule{3cm}{0.4pt}
+
+\vspace{0.6cm}
+
+\textbf{\Huge BIRD}\\[0.3cm]
+{\Large \textit{Birzeit Integrated Router Design}}
+
+\vfill
+
+\textbf{\large Author: \AuthorName}
+
+\vspace*{1cm}
+
+\end{center}
+\end{titlepage}
+
+\newpage
+
+% ============================================================
+% Main Spec
+% ============================================================
+\title{\textbf{BIRD -- Birzeit Integrated Router Design}\\Functional Specification}
+\author{}
+\date{}
+\maketitle
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Overview}
+% ============================================================
+
+BIRD (Birzeit Integrated Router Design) is a packet-based routing block that receives traffic from a single input interface and routes it to one of two output interfaces: \textbf{local} or \textbf{remote}. Routing decisions and packet processing behavior are determined by a 32-bit configuration signal (\texttt{cfg}) that accompanies packet data on the input interface.
+
+BIRD supports two traffic types:
+\begin{itemize}
+  \item \textbf{Local traffic}: forwarded directly to the local output interface.
+  \item \textbf{Remote traffic}: received as multiple fragments, accumulated, reordered, merged, and transmitted as a single packet.
+\end{itemize}
+
+BIRD does not signal errors. Any invalid or malformed packet is silently dropped and recorded internally.
+
+% ============================================================
+\section{Packet Data and Control Signals}
+% ============================================================
+
+\subsection{Packet Data Stream}
+
+The packet data stream transferred on \texttt{data\_in} consists of:
+\begin{verbatim}
+Payload (1--255 bytes)
+CRC16 (16 bits)
+\end{verbatim}
+
+\begin{itemize}
+  \item Payload data is transferred at 8 bits per cycle.
+  \item CRC16 covers only the payload bytes.
+  \item CRC16 is transferred immediately after the payload.
+\end{itemize}
+
+\subsection{Configuration Signal (\texttt{cfg})}
+
+The \texttt{cfg} signal is a 32-bit \textbf{sideband control signal} and is \textbf{not part of the packet data stream}.
+
+\begin{itemize}
+  \item \texttt{cfg} describes the fragment currently being transferred.
+  \item \texttt{cfg} must be valid and stable during the transfer of each fragment.
+  \item For remote traffic, \texttt{cfg} is provided with \textbf{each fragment}.
+  \item For local traffic, \texttt{cfg} applies to the entire packet.
+\end{itemize}
+
+\subsection{Sampling Rule}
+
+BIRD samples the \texttt{cfg} signal on the same clock cycle as the first payload byte of each fragment, when \texttt{in\_vld} and \texttt{in\_rdy} are asserted.
+
+% ============================================================
+\section{Interface Protocol}
+% ============================================================
+
+All interfaces use a valid/ready handshake.
+
+\subsection{Transfer Rule}
+A transfer occurs on a rising edge of \texttt{clk} when:
+\[
+\texttt{vld} = 1 \;\land\; \texttt{rdy} = 1
+\]
+
+\subsection{Stability Rule}
+When \texttt{vld = 1} and \texttt{rdy = 0}, all associated data and control signals must remain stable.
+
+% ============================================================
+\section{Signal Interfaces}
+% ============================================================
+
+\subsection{Global Signals}
+
+\begin{longtable}{|>{\ttfamily}p{3cm}|c|c|p{7cm}|}
+\hline
+Signal & Width & Direction & Description \\
+\hline
+clk & 1 & Input & System clock (rising-edge triggered) \\
+rst\_n & 1 & Input & Active-low reset \\
+\hline
+\end{longtable}
+
+\subsection{Status Output Interface}
+
+\begin{longtable}{|>{\ttfamily}p{3cm}|c|c|p{7cm}|}
+\hline
+Signal & Width & Direction & Description \\
+\hline
+drop\_cnt & 16 & Output & Number of packets dropped (wrap-around counter) \\
+\hline
+\end{longtable}
+
+\subsection{Input Interface (Producer $\rightarrow$ BIRD)}
+
+\begin{longtable}{|>{\ttfamily}p{3cm}|c|c|p{7cm}|}
+\hline
+Signal & Width & Direction & Description \\
+\hline
+in\_vld & 1 & Input & Input data valid \\
+in\_rdy & 1 & Output & BIRD ready to accept input \\
+data\_in & 8 & Input & Payload and CRC data stream \\
+cfg & 32 & Input & Sideband configuration for current fragment \\
+\hline
+\end{longtable}
+
+\subsection{Local Output Interface}
+
+\begin{longtable}{|>{\ttfamily}p{3cm}|c|c|p{7cm}|}
+\hline
+Signal & Width & Direction & Description \\
+\hline
+local\_vld & 1 & Output & Local output valid \\
+local\_rdy & 1 & Input & Local consumer ready \\
+data\_local & 8 & Output & Local payload data \\
+\hline
+\end{longtable}
+
+\subsection{Remote Output Interface}
+
+\begin{longtable}{|>{\ttfamily}p{3cm}|c|c|p{7cm}|}
+\hline
+Signal & Width & Direction & Description \\
+\hline
+remote\_vld & 1 & Output & Remote output valid \\
+remote\_rdy & 1 & Input & Remote consumer ready \\
+data\_remote & 32 & Output & Remote packet data stream \\
+\hline
+\end{longtable}
+
+% ============================================================
+\section{Configuration Word (\texttt{cfg}) Format}
+% ============================================================
+
+The \texttt{cfg} signal is a 32-bit sideband control word with the following format:
+
+\begin{longtable}{|c|c|c|p{7cm}|}
+\hline
+Bits & Field & Width & Description \\
+\hline
+{[0]} & TRAFFIC\_TYPE & 1 & 0 = Local traffic, 1 = Remote traffic \\
+{[7:1]} & Reserved & 7 & Must be 0 \\
+{[15:8]} & PAYLOAD\_LEN & 8 & Payload length in bytes (1--255) \\
+{[20:16]} & FRAG\_NUM & 5 & Fragment number within the packet (1--31) \\
+{[23:21]} & Reserved & 3 & Must be 0 \\
+{[28:24]} & SEQ\_NUM & 5 & Packet sequence number (1--31). 0 is invalid \\
+{[31:29]} & Reserved & 3 & Must be 0 \\
+\hline
+\end{longtable}
+
+% ============================================================
+\section{Local Traffic Processing}
+% ============================================================
+
+A fragment is classified as local traffic when:
+\[
+\texttt{cfg[0]} = 0
+\]
+
+\begin{itemize}
+  \item Local traffic consists of a single fragment only.
+  \item Payload bytes are forwarded directly to the local output interface.
+  \item No buffering, accumulation, or reordering is performed.
+  \item \texttt{FRAG\_NUM} shall be equal to 1.
+  \item \texttt{SEQ\_NUM} identifies the packet but has no functional impact on local routing.
+  \item The input CRC16 is forwarded unchanged.
+\end{itemize}
+
+% ============================================================
+\section{Remote Traffic Processing}
+% ============================================================
+
+A fragment is classified as remote traffic when:
+\[
+\texttt{cfg[0]} = 1
+\]
+
+\subsection{Fragment Rules}
+
+\begin{itemize}
+  \item A remote packet consists of one or more fragments.
+  \item Each fragment carries a \texttt{FRAG\_NUM} field indicating its position within the packet.
+  \item All fragments belonging to the same packet share the same \texttt{SEQ\_NUM}.
+  \item Valid fragment numbers are $1,2,\dots,N$, where $N$ is determined by received fragments.
+  \item Fragments may arrive out of order.
+  \item Only one remote packet (identified by \texttt{SEQ\_NUM}) may be accumulated at a time.
+\end{itemize}
+
+\subsection{Accumulation and Reassembly}
+
+\begin{enumerate}
+  \item Each fragment payload is buffered and indexed by \texttt{FRAG\_NUM}.
+  \item All fragments sharing the same \texttt{SEQ\_NUM} are considered part of the same packet.
+  \item When all required fragments are received, fragments are reordered based on \texttt{FRAG\_NUM}.
+  \item Payloads are concatenated to form a merged payload.
+  \item A new CRC16 is generated over the merged payload.
+\end{enumerate}
+
+\subsection{Remote Output Format}
+
+The remote output interface transmits:
+\begin{verbatim}
+Merged Payload
+CRC16
+\end{verbatim}
+
+The \texttt{cfg} signal is not transmitted on the remote output interface.
+
+% ============================================================
+\section{Silent Packet Drop Policy}
+% ============================================================
+
+BIRD does not signal errors. Invalid packets are silently dropped and counted.
+
+\subsection{Drop Conditions}
+
+A packet is dropped if any of the following occur:
+\begin{itemize}
+  \item \texttt{SEQ\_NUM == 0}
+  \item \texttt{FRAG\_NUM == 0}
+  \item \texttt{PAYLOAD\_LEN} is outside the range 1--255
+  \item Any reserved bits in \texttt{cfg} are non-zero
+  \item A fragment arrives with a mismatched \texttt{SEQ\_NUM} while another packet is being accumulated
+  \item A required fragment for a packet is missing
+  \item A fragment with \texttt{FRAG\_NUM == 1} arrives while a previous packet with a different \texttt{SEQ\_NUM} is still incomplete
+\end{itemize}
+
+\subsection{Drop Counter Behavior}
+
+\begin{itemize}
+  \item \texttt{drop\_cnt} increments by one for each packet that is dropped.
+  \item The counter increments once per packet, regardless of the number of fragments received.
+  \item \texttt{drop\_cnt} is a modulo-$2^{16}$ counter and wraps around on overflow.
+  \item \texttt{drop\_cnt} is not affected by successful packet transmission.
+\end{itemize}
+
+When a drop condition is detected, all buffered data for the affected packet is immediately discarded.
+
+% ============================================================
+\section{Reset Behavior}
+% ============================================================
+
+When \texttt{rst\_n = 0}:
+\begin{itemize}
+  \item All valid outputs are deasserted.
+  \item All internal buffers and fragment state are cleared.
+  \item Any packet in progress is discarded.
+  \item \texttt{drop\_cnt} is cleared to zero.
+\end{itemize}
+
+Normal operation resumes after reset deassertion.
+
+% ============================================================
+\section{Notes for Verification}
+% ============================================================
+
+\begin{itemize}
+  \item Verify correct classification of local versus remote traffic.
+  \item Verify handshake stability under backpressure.
+  \item Verify correct use of \texttt{FRAG\_NUM} and \texttt{SEQ\_NUM}.
+  \item Verify fragment reordering and merged payload correctness.
+  \item Verify silent drop behavior under all listed conditions.
+  \item Verify correct incrementation and wrap-around behavior of \texttt{drop\_cnt}.
+  \item Verify CRC16 regeneration for remote packets.
+\end{itemize}
+
+\end{document}

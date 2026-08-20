@@ -1,0 +1,183 @@
+Command: /home/st101/DVProject/./simv -l run.log
+Chronologic VCS simulator copyright 1991-2022
+Contains Synopsys proprietary information.
+Compiler version T-2022.06-SP2_Full64; Runtime version T-2022.06-SP2_Full64;  Jun 19 22:29 2026
+[TB_TOP] Running test_local_seqnum_variation
+===========================================================
+STARTING TEST: test_local_seqnum_variation
+===========================================================
+ssssssssssssssssss state moved to idle
+ssssssssssssssssss state moved to idle
+ssssssssssssssssss state moved to idle
+ssssssssssssssssss state moved to idle
+[DRIVER] Driving fragment: type=LOCAL plen=4 frag=1 seq=2 total_bytes=6 crc=d3c8
+==================== Delete cur_frag_payload =========== idle state now
+rx_drop ..........................
+ssssssssssssssssss state moved to payload
+                  85 .........................crc_left 2  entered state moved to crc 42
+                  95 .........................crc_left 1  entered state moved to crc 43
+ssssssssssssssssss state moved to idle
+==================== Delete cur_frag_payload =========== idle state now
+rx_drop ..........................
+ssssssssssssssssss state moved to payload
+[MON_IN] Completed fragment: type=LOCAL plen=4 payload_size=4 frag=1 seq=2 crc=d3c8
+[DRIVER] Driving fragment: type=LOCAL plen=8 frag=1 seq=3 total_bytes=10 crc=21ef
+                 145 .........................crc_left 2  entered state moved to crc 41
+                 155 .........................crc_left 1  entered state moved to crc 42
+ssssssssssssssssss state moved to idle
+==================== Delete cur_frag_payload =========== idle state now
+rx_drop ..........................
+ssssssssssssssssss state moved to payload
+                 225 .........................crc_left 2  entered state moved to crc 21
+                 235 .........................crc_left 1  entered state moved to crc ef
+ssssssssssssssssss state moved to idle
+[MON_IN] Completed fragment: type=LOCAL plen=8 payload_size=8 frag=1 seq=3 crc=21ef
+[DRIVER] Driving fragment: type=LOCAL plen=12 frag=1 seq=5 total_bytes=14 crc=c210
+==================== Delete cur_frag_payload =========== idle state now
+rx_drop ..........................
+ssssssssssssssssss state moved to payload
+                 365 .........................crc_left 2  entered state moved to crc 4c
+                 375 .........................crc_left 1  entered state moved to crc 4d
+ssssssssssssssssss state moved to idle
+==================== Delete cur_frag_payload =========== idle state now
+rx_drop ..........................
+ssssssssssssssssss state moved to payload
+[MON_IN] Completed fragment: type=LOCAL plen=12 payload_size=12 frag=1 seq=5 crc=c210
+[DRIVER] Driving fragment: type=LOCAL plen=20 frag=1 seq=31 total_bytes=22 crc=505c
+                 505 .........................crc_left 2  entered state moved to crc 4b
+                 515 .........................crc_left 1  entered state moved to crc 4c
+ssssssssssssssssss state moved to idle
+==================== Delete cur_frag_payload =========== idle state now
+rx_drop ..........................
+ssssssssssssssssss state moved to payload
+[MON_IN] Completed fragment: type=LOCAL plen=20 payload_size=20 frag=1 seq=31 crc=505c
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x40 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x41 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x42 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x43 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0xd3 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0xc8 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x41 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x42 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x43 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x44 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x45 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x46 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x47 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x48 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x21 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0xef but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x42 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x43 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x44 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x45 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x46 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x47 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x48 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x49 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4a but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4b but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4c but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4d but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0xc2 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x10 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x43 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x44 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x45 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x46 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x47 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x48 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x49 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4a but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4b but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4c but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4d but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4e but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x4f but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x50 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x51 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x52 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x53 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x54 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x55 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x56 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x50 but DUT did not output it
+Error: "./verif/bird_scoreboard.sv", 308: bird_pkg::\bird_scoreboard::compare_local_streams : at time 1145
+[SCOREBOARD] Missing LOCAL byte: expected 0x5c but DUT did not output it
+===========================================================
+BIRD SCOREBOARD REPORT
+  LOCAL  : checked=0 pass=0 fail=52 unexpected=0 leftover_expected=0
+  REMOTE : checked=0 pass=0 fail=0 unexpected=0 leftover_expected=0
+  Remote packets completed (predicted) : 0
+  Packets dropped (predicted)          : 0
+  drop_cnt expected = 0  (DUT) actual = 6
+Error: "./verif/bird_scoreboard.sv", 370: bird_pkg::\bird_scoreboard::report : at time 1145
+[SCOREBOARD] drop_cnt mismatch: expected=0 actual=6
+  RESULT: FAIL
+===========================================================
+---------------------------------------------------------
+FUNCTIONAL COVERAGE SUMMARY
+  cfg fields        : 35.00 %
+  drop reasons      : 0.00 %
+  remote reassembly : 0.00 %
+  backpressure      : 50.00 %
+  reset scenarios   : 0.00 %
+---------------------------------------------------------
+[TB_TOP] Test test_local_seqnum_variation finished
+$finish called from file "./verif/testbench.sv", line 119.
+$finish at simulation time                 1145
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 1145
+CPU Time:      0.400 seconds;       Data structure size:   0.1Mb
+Fri Jun 19 22:29:17 2026

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE cov SYSTEM "ucdb_srcinfo.dtd">
+  <srcinfo name="/home/st101/DVProject"  >
+    <ucapi_version  major_ver="13"  minor_ver="1"  patch_str="T-2022.06-SP2"  />
+      <fileinfo name="verif/bird_if.sv"  id="0"  timestamp="1782055415"  />
+      <fileinfo name="verif/bird_pkg.sv"  id="1"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_defs.sv"  id="2"  timestamp="1782055415"  />
+      <fileinfo name="verif/bird_transaction.sv"  id="3"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_sequence_base.sv"  id="4"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_sequences.sv"  id="5"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_driver.sv"  id="6"  timestamp="1782055415"  />
+      <fileinfo name="verif/bird_monitor_in.sv"  id="7"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_monitor_local.sv"  id="8"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_monitor_remote.sv"  id="9"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_coverage.sv"  id="10"  timestamp="1782055415"  />
+      <fileinfo name="verif/bird_scoreboard.sv"  id="11"  timestamp="1782055414"  />
+      <fileinfo name="verif/bird_env.sv"  id="12"  timestamp="1782055415"  />
+      <fileinfo name="verif/bird_test_base.sv"  id="13"  timestamp="1782056812"  />
+      <fileinfo name="verif/bird_tests.sv"  id="14"  timestamp="1782056618"  />
+      <fileinfo name="design/design.sv"  id="15"  timestamp="1782055415"  />
+      <fileinfo name="verif/testbench.sv"  id="16"  timestamp="1782056618"  />
+      <fileinfo name=""  id="17"  />
+    </srcinfo>
